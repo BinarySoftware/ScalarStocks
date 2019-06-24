@@ -1,7 +1,6 @@
 import io.circe.parser
 import io.circe.generic.semiauto.deriveDecoder
-
-case class Symbol(symbol: String, price: Double, size: Int, time: Long)
+import PublicDef._
 
 object jsonParser {
     def parse(input: String) : Option[List[Symbol]] = {
