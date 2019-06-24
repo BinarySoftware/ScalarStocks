@@ -1,6 +1,6 @@
 import scala.io.Source
 
-object Main {
+object ScalarStocks {
     def getDataFromURLWithSymbols(urlString: String, symbols: Array[String]) : String = {
         val stringOfSymbols = symbols.mkString(",")
         val concatenatedURL = urlString.concat(stringOfSymbols)
