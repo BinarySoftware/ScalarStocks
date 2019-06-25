@@ -1,6 +1,7 @@
 import PublicDef._
 import java.util.Date
 import ScalarStocks._
+import DataManager._
 
 object AppUI {
     def makeMainUI(symbols: Option[List[Symbol]]) : Unit = {
@@ -46,6 +47,7 @@ object AppUI {
                 makeControlsForMainScreen()
             } else {
                 symbols :+= symbolName
+                saveDataToLocalFile()
                 refreshData(symbols)
             }
         } else if (action == "D" || action == "d") {
@@ -55,6 +57,7 @@ object AppUI {
 
             if (symbols.contains(symbolName)) {
                 symbols = symbols.filter(! _.contains(symbolName))
+                saveDataToLocalFile()
                 refreshData(symbols)
             } else {
                 println(Console.RED + "Sorry, there is no " +  symbolName + " in your symbols array")

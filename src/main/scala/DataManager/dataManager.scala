@@ -1,5 +1,6 @@
 import scala.io.Source
 import ScalarStocks._
+import java.io._
 
 object DataManager {
     def getDataFromURLWithSymbols(urlString: String, symbols: Array[String]) : String = {
@@ -14,11 +15,16 @@ object DataManager {
         }
     }
 
-    def saveDataToLocalFile() : String = {
-        return "Success"
+    def saveDataToLocalFile() : Unit= {
+        val writer = new PrintWriter(new File("symbols.txt"))
+        val dataToWrite = symbols.mkString("\n")
+        writer.write(dataToWrite)
+        writer.close()
     }
 
-    def loadDataFromLocalFile() : String = {
-        return "Success"
+    def loadDataFromLocalFile() : Unit = {
+        for (line <- Source.fromFile("symbols.txt").getLines()) {
+            symbols :+= line
+        }
     }
 }
