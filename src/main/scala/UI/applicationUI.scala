@@ -19,7 +19,7 @@ object AppUI {
         println("\n" + Console.BLUE + "  NAME    PRICE    TIME OF LAST REFRESH")
 
         for (symbol <- symbols) {
-            val lastRefreshTimeReadable = new Date(symbol.time * 1000L)
+            val lastRefreshTimeReadable = new Date(symbol.time)
             println("  " + Console.GREEN + symbol.symbol.formatted(s"%-8s") + Console.WHITE + "%.2f".format(symbol.price).formatted(s"%-9s") + lastRefreshTimeReadable)
         }
     }

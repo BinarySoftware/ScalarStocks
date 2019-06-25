@@ -1,4 +1,4 @@
-import DataLoader._
+import DataManager._
 import jsonParser._
 import LaunchScreen._
 import AppUI._

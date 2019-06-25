@@ -1,6 +1,7 @@
 import scala.io.Source
+import ScalarStocks._
 
-object DataLoader {
+object DataManager {
     def getDataFromURLWithSymbols(urlString: String, symbols: Array[String]) : String = {
         val stringOfSymbols = symbols.mkString(",")
         val concatenatedURL = urlString.concat(stringOfSymbols)
@@ -11,5 +12,13 @@ object DataLoader {
         catch {
             case _ : Throwable => "An error has occurred"
         }
+    }
+
+    def saveDataToLocalFile() : String = {
+        return "Success"
+    }
+
+    def loadDataFromLocalFile() : String = {
+        return "Success"
     }
 }
