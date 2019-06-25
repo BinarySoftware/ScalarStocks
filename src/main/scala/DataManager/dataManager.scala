@@ -30,8 +30,7 @@ object DataManager {
                 symbols :+= line
             }
         } else {
-            println(Console.BLUE + NO_DATA_INFORMATION)
-            Thread.sleep(2000)
+            viewer(NO_DATA_INFORMATION, "info")
         }
     }
 }

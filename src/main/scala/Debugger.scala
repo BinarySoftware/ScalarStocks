@@ -8,7 +8,11 @@ object Debugger {
             case _ => Console.WHITE
         }
 
-        println(color + message)
+        println(color + "\n" + message)
         Thread.sleep(2000)
+
+        if (debugType == "error") {
+            System.exit(0)
+        }
     }
 }
