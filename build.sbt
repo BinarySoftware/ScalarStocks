@@ -1,7 +1,10 @@
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
-      organization := "com.BinarySoftware"
+      organization := "com.BinarySoftware",
+      name := "ScalarStocks",
+      version := "0.2",
+      trapExit := false
     )),
     name := "ScalarStocks"
   )

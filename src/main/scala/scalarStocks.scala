@@ -6,7 +6,7 @@ import AppUI._
 object ScalarStocks {
 
     val stocksAPIURL = "https://ws-api.iextrading.com/1.0/tops/last?symbols="
-    var symbols = Array("AAPL","MSFT","TSLA")
+    var symbols = Array("AAPL","MSFT","TSLA","IBM","LLY")
 
     def main(args: Array[String]) : Unit = {
         makeLaunchScreen()
