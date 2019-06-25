@@ -17,8 +17,8 @@ object ScalarStocks {
 
     def refreshData(sym: Array[String]) : Unit = {
         val stocksData = getDataFromURLWithSymbols(stocksAPIURL, sym)
-        if (stocksData == "An error has occurred") {
-            viewer("Unable to fetch data from server", "error")
+        if (stocksData == "An error has occurred" && sym.length != 0) {
+            viewer("Unable to fetch data from server", Error())
         }
         val parsedSymbols = parse(stocksData)
         makeMainUI(parsedSymbols)

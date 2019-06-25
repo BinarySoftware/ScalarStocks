@@ -30,7 +30,7 @@ object DataManager {
                 symbols :+= line
             }
         } else {
-            viewer(NO_DATA_INFORMATION, "info")
+            viewer(NO_DATA_INFORMATION, Info())
         }
     }
 }
