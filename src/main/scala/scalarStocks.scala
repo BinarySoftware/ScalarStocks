@@ -14,7 +14,7 @@ object ScalarStocks {
         refreshData(symbols)
     }
 
-    def refreshData(sym: Array[String]) {
+    def refreshData(sym: Array[String]) : Unit = {
         val stocksData = getDataFromURLWithSymbols(stocksAPIURL, sym)
         val parsedSymbols = parse(stocksData)
         makeMainUI(parsedSymbols)

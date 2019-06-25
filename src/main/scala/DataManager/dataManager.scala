@@ -1,6 +1,7 @@
 import scala.io.Source
 import ScalarStocks._
-import java.io._
+import java.io.{PrintWriter,File}
+import Debugger._
 
 object DataManager {
     def getDataFromURLWithSymbols(urlString: String, symbols: Array[String]) : String = {
@@ -23,8 +24,14 @@ object DataManager {
     }
 
     def loadDataFromLocalFile() : Unit = {
-        for (line <- Source.fromFile("symbols.txt").getLines()) {
-            symbols :+= line
+        val NO_DATA_INFORMATION = "\nFirst, you need to append symbols. Do that by clicking [A] and typing in symbol name"
+        if (scala.reflect.io.File("symbols.txt").exists) {
+            for (line <- Source.fromFile("symbols.txt").getLines()) {
+                symbols :+= line
+            }
+        } else {
+            println(Console.BLUE + NO_DATA_INFORMATION)
+            Thread.sleep(2000)
         }
     }
 }
