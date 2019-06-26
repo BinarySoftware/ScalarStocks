@@ -1,5 +1,5 @@
 object Debugger {
-    abstract class DebuggerType
+    sealed trait DebuggerType
 
     case class Info() extends DebuggerType
     case class Warning() extends DebuggerType
