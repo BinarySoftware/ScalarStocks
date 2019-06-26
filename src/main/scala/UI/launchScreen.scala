@@ -12,6 +12,6 @@ object LaunchScreen {
             println()
         }
         println(Console.WHITE + "".formatted(s"%-29s") + "2019 Maciej Mikolajek".formatted(s"%-30s"))
-        println("".formatted(s"%-37s") + "V 1.0".formatted(s"%-38s"))
+        println("".formatted(s"%-37s") + "V 1.1".formatted(s"%-38s"))
     }
 }

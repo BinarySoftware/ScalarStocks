@@ -37,6 +37,7 @@ object AppUI {
         val action = scala.io.StdIn.readLine(Console.BLUE + "Command>")
 
         if (action == "R" || action == "r") {
+            viewMessage("Successfull refresh",Success())
             refreshData(symbols)
         } else if (action == "A" || action == "a") {
             viewMessage("Please type in correct symbol to append",Other())
@@ -49,6 +50,7 @@ object AppUI {
             } else {
                 symbols :+= symbolName
                 saveDataToLocalFile()
+                viewMessage("Successfully appended: " +  symbolName,Success())
                 refreshData(symbols)
             }
         } else if (action == "D" || action == "d") {
@@ -59,6 +61,7 @@ object AppUI {
             if (symbols.contains(symbolName)) {
                 symbols = symbols.filter(! _.contains(symbolName))
                 saveDataToLocalFile()
+                viewMessage("Successfully removed: " +  symbolName,Success())
                 refreshData(symbols)
             } else {
                 viewMessage("Sorry, there is no " +  symbolName + " in your symbols array",Warning(),1)
