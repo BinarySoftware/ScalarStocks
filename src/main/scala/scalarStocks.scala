@@ -2,11 +2,10 @@ import DataManager._
 import jsonParser._
 import LaunchScreen._
 import AppUI._
-import Debugger._
+import Message._
+import PublicDef._
 
 object ScalarStocks {
-
-    val stocksAPIURL = "https://ws-api.iextrading.com/1.0/tops/last?symbols="
     var symbols: Array[String] = Array()
 
     def main(args: Array[String]) : Unit = {
@@ -16,9 +15,9 @@ object ScalarStocks {
     }
 
     def refreshData(sym: Array[String]) : Unit = {
-        val stocksData = getDataFromURLWithSymbols(stocksAPIURL, sym)
-        if (stocksData == "An error has occurred" && sym.length != 0) {
-            viewer("Unable to fetch data from server", Error())
+        val stocksData = getDataFromURLWithSymbols(baseURL, sym)
+        if (stocksData == ERROR_BASE_MSG && sym.length != 0) {
+            viewMessage(FETCH_ERROR_MSG, Error(),1)
         }
         val parsedSymbols = parse(stocksData)
         makeMainUI(parsedSymbols)

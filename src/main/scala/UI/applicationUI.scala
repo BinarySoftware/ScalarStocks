@@ -2,6 +2,7 @@ import PublicDef._
 import java.util.Date
 import ScalarStocks._
 import DataManager._
+import Message._
 
 object AppUI {
     def makeMainUI(symbols: Option[List[Symbol]]) : Unit = {
@@ -38,12 +39,12 @@ object AppUI {
         if (action == "R" || action == "r") {
             refreshData(symbols)
         } else if (action == "A" || action == "a") {
-            println(Console.WHITE + "Please type in correct symbol to append")
+            viewMessage("Please type in correct symbol to append",Other())
             var symbolName = scala.io.StdIn.readLine(Console.BLUE + "Symbol>")
             symbolName = symbolName.toUpperCase
 
             if (symbols.contains(symbolName)) {
-                println(Console.RED + "Sorry, your symbols already contain: " +  symbolName)
+                viewMessage("Sorry, your symbols already contain: " +  symbolName,Warning(),1)
                 makeControlsForMainScreen()
             } else {
                 symbols :+= symbolName
@@ -51,7 +52,7 @@ object AppUI {
                 refreshData(symbols)
             }
         } else if (action == "D" || action == "d") {
-            println(Console.WHITE + "Please type in correct symbol to delete")
+            viewMessage("Please type in correct symbol to delete",Other())
             var symbolName = scala.io.StdIn.readLine(Console.BLUE + "Symbol>")
             symbolName = symbolName.toUpperCase
 
@@ -60,12 +61,12 @@ object AppUI {
                 saveDataToLocalFile()
                 refreshData(symbols)
             } else {
-                println(Console.RED + "Sorry, there is no " +  symbolName + " in your symbols array")
+                viewMessage("Sorry, there is no " +  symbolName + " in your symbols array",Warning(),1)
                 makeControlsForMainScreen()
                 
             }
         } else if (action == "Q" || action == "q") {
-            println(Console.RED + "Are you sure you want to quit? (Y/N)")
+            viewMessage("Are you sure you want to quit? (Y/N)",Warning())
             val quitAction = scala.io.StdIn.readLine(Console.BLUE + "Command>")
 
             if (quitAction == "Y" || quitAction == "y") {
@@ -74,7 +75,7 @@ object AppUI {
                 refreshData(symbols)
             }
         } else {
-            println(Console.RED + "Sorry, I dont know what you mean by: " + action)
+            viewMessage("Sorry, I dont know what you mean by: " + action,Warning(),1)
             makeControlsForMainScreen()
         }
     }

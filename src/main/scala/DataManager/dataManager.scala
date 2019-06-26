@@ -1,7 +1,8 @@
 import scala.io.Source
 import ScalarStocks._
 import java.io.{PrintWriter,File}
-import Debugger._
+import Message._
+import PublicDef._
 
 object DataManager {
     def getDataFromURLWithSymbols(urlString: String, symbols: Array[String]) : String = {
@@ -12,25 +13,24 @@ object DataManager {
             Source.fromURL(concatenatedURL).mkString
         }
         catch {
-            case _ : Throwable => "An error has occurred"
+            case _ : Throwable => ERROR_BASE_MSG
         }
     }
 
     def saveDataToLocalFile() : Unit= {
-        val writer = new PrintWriter(new File("symbols.txt"))
+        val writer = new PrintWriter(new File(dataFileName))
         val dataToWrite = symbols.mkString("\n")
         writer.write(dataToWrite)
         writer.close()
     }
 
     def loadDataFromLocalFile() : Unit = {
-        val NO_DATA_INFORMATION = "\nFirst, you need to append symbols. Do that by clicking [A] and typing in symbol name"
-        if (scala.reflect.io.File("symbols.txt").exists) {
-            for (line <- Source.fromFile("symbols.txt").getLines()) {
+        if (scala.reflect.io.File(dataFileName).exists) {
+            for (line <- Source.fromFile(dataFileName).getLines()) {
                 symbols :+= line
             }
         } else {
-            viewer(NO_DATA_INFORMATION, Info())
+            viewMessage(NO_DATA_INFORMATION, Info(),2)
         }
     }
 }
